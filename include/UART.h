@@ -14,18 +14,21 @@ typedef enum
 {
 	UART_TXIDLE=0,
 	UART_TXREADY,
-	UART_TXBUZZY
+	UART_TXBUZZY,
+	UART_TXBreak
 }UART_TXStatus_t;
 
 typedef enum
 {
 	UART_RXIDLE=0,
 	UART_RXREADY,
-	UART_RXBUZZY
+	UART_RXBUZZY,
+	UART_RXBreak
 }UART_RXStatus_t;
 
 
 void UART_Init(UART_PaudRate_t UART_PaudRate);
+
 void UART_Transmit(u8* str , u8 size);
 void UART_Recieve(u8* data, u8 size);
 
@@ -38,5 +41,9 @@ UART_RXStatus_t UART_GetStatusRX(void);
 
 void UART_TX_Notify(UART_CallBack_ptr_t UART_CallBack_ptr);
 void UART_RX_Notify(UART_CallBack_ptr_t UART_CallBack_ptr);
+
+void UART_LIN_Init(UART_PaudRate_t UART_PaudRate);
+void UART_LIN_SendBreak(void);
+void UART_LIN_Notify(UART_CallBack_ptr_t UART_CallBack_ptr);
 
 #endif
